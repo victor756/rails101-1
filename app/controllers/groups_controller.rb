@@ -6,9 +6,9 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
   end
 
   def show
-      @group = Group.find(params[:id])
-      @posts = @group.posts.order("created_at DESC")
-    end
+   @group = Group.find(params[:id])
+   @posts = @group.posts.recent.paginate(:page => params[:page], :per_page => 5)
+ end
  def edit
  end
 
